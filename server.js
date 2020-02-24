@@ -9,23 +9,23 @@ const users = {}
 function listen() {
     const host = server.address().address
     const port = server.address().port
-    console.log('Example app listening at http://' + host + ':' + port)
 }
 
 io.on("connection", socket => {
+    console.log("New connection")
     socket.on("set-name", name => {
         console.log("Name:", name)
         users[socket.id] = name
-        socket.broadcast.emit("user-connected", name)
+        io.sockets.emit("user-connected", name)
     })
-    socket.on("send-message", message => {
-        console.log("Msg:",message)
+    socket.on("send-message", msg => {
+        console.log("Msg:",msg.message)
         if (users[socket.id] !== undefined) {
-            socket.broadcast.emit("chat-message", { message: message, name: users[socket.id] })
+            io.sockets.emit("chat-message", { message: msg.message, timestamp: msg.timestamp, name: users[socket.id] })
         }
     })
     socket.on("disconnect", () => {
-        socket.broadcast.emit("user-disconnected", users[socket.id])
+        io.sockets.emit("user-disconnected", users[socket.id])
         delete users[socket.id]
     })
 })
