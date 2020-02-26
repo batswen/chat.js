@@ -29,9 +29,7 @@ io.on("connection", socket => {
 })
 
 /*
-// Send it to all other clients
-socket.broadcast.emit('mouse', data);
-
-// This is a way to send to everyone including sender
-io.sockets.emit('message', "this goes to everyone");
+socket.emit("eventname", data)              // to this socket
+socket.broadcast.emit("eventname", data)    // all other sockets
+io.sockets.emit("eventname"', data)         // all sockets
 */
