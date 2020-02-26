@@ -8,50 +8,31 @@
 
   <style>
     body {
-      padding: 0;
-      margin: 0;
-      display: flex;
-      justify-content: center;
     }
-
-    #message-container {
-      width: 80%;
-      max-width: 1200px;
-      border: 1px solid #aaa;
+    .message {
+        width: 80%;
+        min-height: 200px;
+        height: 80%;
+        border: 1px solid black;
+        padding: 0.25em;
     }
-
-    #message-container div {
-      background-color: #CCC;
-      padding: 5px;
-    }
-
-    #message-container div:nth-child(2n) {
-      background-color: #FFF;
-    }
-
-    #send-container {
-      position: fixed;
-      padding-bottom: 30px;
-      bottom: 0;
-      background-color: white;
-      max-width: 1200px;
-      width: 80%;
-      display: flex;
-    }
-
-    #message-input {
-      flex-grow: 1;
+    .send {
+        width: 80%;
+        border: 1px solid black;
+        padding: 0.25em;
     }
   </style>
 </head>
 <body>
-    <div id="message-container"></div>
-    <div id="send-container">
-        <input type="text" id="chat-name">
-        <button id="set-name">Send name</button>
-        <input type="text" id="chat-message">
-        <button id="send-message">Send</button>
-    </div>
+    <center>
+        <div id="message" class="message"></div>
+        <div class="send">
+            <input type="text" id="chat-name">
+            <button id="set-name">Send name</button>
+            <input type="text" id="chat-message">
+            <button id="send-message">Send</button>
+        </div>
+    </center>
     <script src="socket.io/socket.io.js"></script>
     <script src="client.js"></script>
 </body>

@@ -3,7 +3,7 @@ const chatName = document.getElementById("chat-name")
 const setName = document.getElementById("set-name")
 const chatMessage = document.getElementById("chat-message")
 const sendMessage = document.getElementById("send-message")
-const messageContainer = document.getElementById("message-container")
+const message = document.getElementById("message")
 
 setName.addEventListener("click", e => {
     if (chatName.value !== "") {
@@ -18,17 +18,20 @@ sendMessage.addEventListener("click", e => {
     }
 })
 socket.on("chat-message", data => {
-  appendMessage(`${data.name} (${data.timestamp}): ${data.message}`)
+    console.log("chat-message", `${data.name} (${data.timestamp}): ${data.message}`)
+    appendChat(`${data.name} (${data.timestamp}): ${data.message}`)
 })
 
-socket.on("user-connected", name => {
-  appendMessage(`${name} connected`)
+socket.on("new-user-connected", name => {
+    console.log(`${name} connected`)
+    appendChat(`${name} connected`)
 })
 
 socket.on("user-disconnected", name => {
-  appendMessage(`${name} disconnected`)
+    console.log(`${name} disconnected`)
+    appendChat(`${name} disconnected`)
 })
 
-function appendMessage(msg) {
-    messageContainer.innerHTML += "<p>" + msg + "</p>"
+function appendChat(msg) {
+    message.innerHTML += "<p>" + msg + "</p>"
 }

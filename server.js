@@ -12,11 +12,9 @@ function listen() {
 }
 
 io.on("connection", socket => {
-    console.log("New connection")
     socket.on("set-name", name => {
-        console.log("Name:", name)
         users[socket.id] = name
-        io.sockets.emit("user-connected", name)
+        io.sockets.emit("new-user-connected", name)
     })
     socket.on("send-message", msg => {
         console.log("Msg:",msg.message)
