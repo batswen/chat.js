@@ -1,29 +1,23 @@
 const express = require("express")
 const app = express()
 const server = app.listen(8080)
-app.use(express.static("public"), listen)
+app.use(express.static("public"))
 const io = require("socket.io")(server)
 
 const users = {}
 
-function listen() {
-    const host = server.address().address
-    const port = server.address().port
-}
-
 io.on("connection", socket => {
     socket.on("set-name", name => {
         users[socket.id] = name
-        io.sockets.emit("new-user-connected", name)
+        io.sockets.emit("chat-message", { message: `${name} connected.`, timestamp: new Date(), name: "Bot" })
     })
     socket.on("send-message", msg => {
-        console.log("Msg:",msg.message)
         if (users[socket.id] !== undefined) {
-            io.sockets.emit("chat-message", { message: msg.message, timestamp: msg.timestamp, name: users[socket.id] })
+            socket.broadcast.emit("chat-message", { message: msg.message, timestamp: msg.timestamp, name: users[socket.id] })
         }
     })
     socket.on("disconnect", () => {
-        io.sockets.emit("user-disconnected", users[socket.id])
+        io.sockets.emit("chat-message", { message: `${users[socket.id]} disconnected.`, timestamp: new Date(), name: "Bot" })
         delete users[socket.id]
     })
 })

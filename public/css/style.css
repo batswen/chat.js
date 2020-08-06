@@ -1,0 +1,29 @@
+.message-container {
+    width: 80%;
+    min-height: 200px;
+    max-height: 250px;
+    height: 80%;
+    border: 1px solid black;
+    padding: 0.25em;
+    overflow-y: auto;
+}
+.msg {
+    border: 1px solid #aaa;
+    border-radius: 0.5em;
+    margin-bottom: 0.1em;
+    padding: 0.25em;
+    background-color: #7af;
+}
+.msg-info {
+    font-size: 12pt;
+    text-align: left;
+}
+.msg-msg {
+    font-size: 18pt;
+    color: #eef;
+}
+.send {
+    width: 80%;
+    border: 1px solid black;
+    padding: 0.25em;
+}

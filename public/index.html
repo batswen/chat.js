@@ -4,36 +4,21 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="css/style.css">
   <title>Chat App</title>
-
-  <style>
-    body {
-    }
-    .message {
-        width: 80%;
-        min-height: 200px;
-        height: 80%;
-        border: 1px solid black;
-        padding: 0.25em;
-    }
-    .send {
-        width: 80%;
-        border: 1px solid black;
-        padding: 0.25em;
-    }
-  </style>
 </head>
 <body>
     <center>
-        <div id="message" class="message"></div>
+        <div id="message-container" class="message-container"></div>
         <div class="send">
-            <input type="text" id="chat-name">
+            Server: <input type="text" id="chat-ip" value="localhost">
+            <input type="text" id="chat-name" placeholder="Your name">
             <button id="set-name">Send name</button>
-            <input type="text" id="chat-message">
+            <input type="text" id="chat-message" placeholder="Your message">
             <button id="send-message">Send</button>
         </div>
     </center>
     <script src="socket.io/socket.io.js"></script>
-    <script src="client.js"></script>
+    <script src="js/client.js"></script>
 </body>
 </html>
