@@ -14,7 +14,7 @@ io.on("connection", socket => {
         for (user in users) {
             usernames.push(users[user])
         }
-        console.log(usernames)
+        //console.log(usernames)
         io.sockets.emit("user-list", usernames)
     })
     socket.on("send-message", msg => {

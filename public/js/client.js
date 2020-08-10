@@ -42,6 +42,9 @@ socket.on("user-list", data => {
     for (let user of data) {
         html += `<li>${user}</li>`
     }
+    for (let i = 0; i < 20; i++) {
+        html += `<li>User${i}</li>`
+    }
     html += "</ul>"
     console.log(html)
     users.innerHTML = html
