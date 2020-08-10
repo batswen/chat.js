@@ -9,7 +9,13 @@ const users = {}
 io.on("connection", socket => {
     socket.on("set-name", name => {
         users[socket.id] = name
-        io.sockets.emit("chat-message", { message: `${name} connected.`, timestamp: new Date(), name: "Bot" })
+        io.sockets.emit("chat-connect", { name, timestamp: new Date() })
+        const usernames = []
+        for (user in users) {
+            usernames.push(user)
+        }
+        console.log(usernames)
+        io.sockets.emit("user-list", usernames)
     })
     socket.on("send-message", msg => {
         if (users[socket.id] !== undefined) {
@@ -17,7 +23,7 @@ io.on("connection", socket => {
         }
     })
     socket.on("disconnect", () => {
-        io.sockets.emit("chat-message", { message: `${users[socket.id]} disconnected.`, timestamp: new Date(), name: "Bot" })
+        io.sockets.emit("chat-disconnect", { name: users[socket.id], timestamp: new Date() })
         delete users[socket.id]
     })
 })
