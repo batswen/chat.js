@@ -9,8 +9,12 @@
 </head>
 <body>
     <center>
-        <div id="message-container" class="message-container"></div>
-        <div class="send">
+        <div class="row borderpadding achtzigVH">
+            <div class="col-2" id="user-list"></div>
+            <div class="col-1">&nbsp;</div>
+            <div class="col-9 message-container" id="message-container"></div>
+        </div>
+        <div class="send borderpadding">
             Server: <input type="text" id="chat-ip" value="localhost">
             <input type="text" id="chat-name" placeholder="Your name">
             <button id="set-name">Send name</button>

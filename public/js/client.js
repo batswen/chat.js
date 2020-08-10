@@ -6,8 +6,7 @@ const setName = document.getElementById("set-name")
 const chatMessage = document.getElementById("chat-message")
 const sendMessage = document.getElementById("send-message")
 const message = document.getElementById("message-container")
-
-const users = []
+const users = document.getElementById("user-list")
 
 setName.addEventListener("click", e => {
     if (chatName.value !== "") {
@@ -38,6 +37,15 @@ socket.on("chat-disconnect", data => {
     const time = getTime(data)
     appendChat(`<div class="container"><img src="/img/bot.png" alt="Avatar"><p>${data.name} disconnected</p><span class="time-right">${time}</span></div>`)
 })
+socket.on("user-list", data => {
+    let html = `<ul><li class="top">Users</li>`
+    for (let user of data) {
+        html += `<li>${user}</li>`
+    }
+    html += "</ul>"
+    console.log(html)
+    users.innerHTML = html
+})
 
 function appendChat(msg) {
     message.innerHTML += msg
@@ -60,15 +68,6 @@ function addZero(num) {
 function getTime(data) {
     const date = new Date(data.timestamp)
     return addZero(date.getHours()) + ":" + addZero(date.getMinutes())
-}
-
-function updateUsers() {
-    const u = document.getElementById("user-list")
-    u.innerHTML = ""
-    console.log(users)
-    for (user of users) {
-        u.innerHTML += "<p>" + user + "</p>"
-    }
 }
 
 chatMessage.disabled = true

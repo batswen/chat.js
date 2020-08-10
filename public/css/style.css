@@ -2,6 +2,7 @@ body {
   margin: 0 auto;
   max-width: 800px;
   padding: 0 20px;
+  box-sizing: border-box;
 }
 input {
     padding: 0.5em 1em;
@@ -15,18 +16,19 @@ button {
     border: 1px solid #ccc;
     border-radius: 0.5em;
 }
-.message-container {
-    /*width: 80%;*/
-    min-height: 200px;
-    max-height: 80vh;
-    border: 1px solid black;
-    border-radius: 0.2em;
-    padding: 0.5em;
-    overflow-y: auto;
-    margin-top: 1em;
-    margin-bottom: 1em;
+input:disabled, button:disabled {
+    background-color: #ddd;
+    color: #888;
 }
-
+.message-container {
+    height: 100%;
+    overflow-y: auto;
+}
+.achtzigVH {
+    max-height: 80vh;
+    min-height: 80vh;
+    height: 80vh;
+}
 .container {
   border: 2px solid #dedede;
   background-color: #f1f1f1;
@@ -71,3 +73,49 @@ button {
   float: left;
   color: #999;
 }
+.borderpadding {
+    border: 1px solid #ddd;
+    padding: 12px;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+ul li {
+  border: 1px solid #ddd;
+  margin-top: -1px; /* Prevent double borders */
+  background-color: #f6f6f6;
+  padding: 12px;
+  text-align: left;
+}
+ul li.top {
+    font-weight: 700;
+    text-align: center;
+}
+
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+[class*="col-"] {
+  float: left;
+  /*padding: 15px;*/
+}
+
+.col-1 {width: 8.33%;}
+.col-2 {width: 16.66%;}
+.col-3 {width: 25%;}
+.col-4 {width: 33.33%;}
+.col-5 {width: 41.66%;}
+.col-6 {width: 50%;}
+.col-7 {width: 58.33%;}
+.col-8 {width: 66.66%;}
+.col-9 {width: 75%;}
+.col-10 {width: 83.33%;}
+.col-11 {width: 91.66%;}
+.col-12 {width: 100%;}

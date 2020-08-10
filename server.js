@@ -12,7 +12,7 @@ io.on("connection", socket => {
         io.sockets.emit("chat-connect", { name, timestamp: new Date() })
         const usernames = []
         for (user in users) {
-            usernames.push(user)
+            usernames.push(users[user])
         }
         console.log(usernames)
         io.sockets.emit("user-list", usernames)
