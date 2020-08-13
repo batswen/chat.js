@@ -26,15 +26,15 @@ sendMessage.addEventListener("click", e => {
     send()
 })
 socket.on("chat-message", data => {
-    const time = getTime(data)
+    const time = timeToString(data)
     appendChat(`<div class="container"><img src="/img/right.png" alt="Avatar"><p>${data.message}</p><span class="time-right">${data.name} ${time}</span></div>`)
 })
 socket.on("chat-connect", data => {
-    const time = getTime(data)
+    const time = timeToString(data)
     appendChat(`<div class="container"><img src="/img/bot.png" alt="Avatar"><p>${data.name} connected</p><span class="time-right">${time}</span></div>`)
 })
 socket.on("chat-disconnect", data => {
-    const time = getTime(data)
+    const time = timeToString(data)
     appendChat(`<div class="container"><img src="/img/bot.png" alt="Avatar"><p>${data.name} disconnected</p><span class="time-right">${time}</span></div>`)
 })
 socket.on("user-list", data => {
@@ -42,11 +42,7 @@ socket.on("user-list", data => {
     for (let user of data) {
         html += `<li>${user}</li>`
     }
-    for (let i = 0; i < 20; i++) {
-        html += `<li>User${i}</li>`
-    }
     html += "</ul>"
-    console.log(html)
     users.innerHTML = html
 })
 
@@ -56,7 +52,7 @@ function appendChat(msg) {
 }
 function send() {
     if (chatMessage.value !== "") {
-        const time = getTime({timestamp: new Date()})
+        const time = timeToString({timestamp: new Date()})
         socket.emit("send-message", {message: chatMessage.value, timestamp: new Date()})
         appendChat(`<div class="container darker"><img src="/img/left.png" alt="Avatar" class="right"><p>${chatMessage.value}</p><span class="time-left">${time}</span></div>`)
         chatMessage.value = ""
@@ -68,7 +64,7 @@ function addZero(num) {
     return num < 10 ? "0" + num : num
 }
 
-function getTime(data) {
+function timeToString(data) {
     const date = new Date(data.timestamp)
     return addZero(date.getHours()) + ":" + addZero(date.getMinutes())
 }
