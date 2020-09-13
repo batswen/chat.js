@@ -94,6 +94,7 @@ ul li {
 ul li.top {
     font-weight: 700;
     text-align: center;
+    margin-top: 1px;
 }
 
 .row::after {
