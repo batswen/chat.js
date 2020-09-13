@@ -4,17 +4,18 @@ body {
   padding: 0 20px;
   box-sizing: border-box;
 }
-input {
+input, button {
     padding: 0.5em 1em;
     border: 1px solid #ccc;
     border-radius: 0.5em;
 }
+input {
+    background-color: #abf;
+    color: black;
+}
 button {
-    background-color: #56c;
+    background-color: #34c;
     color: white;
-    padding: 0.5em 1em;
-    border: 1px solid #ccc;
-    border-radius: 0.5em;
 }
 input:disabled, button:disabled {
     background-color: #ddd;
